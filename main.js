@@ -1,5 +1,6 @@
 const numbersContainer = document.querySelector('.numbers-container');
 const generateBtn = document.getElementById('generate-btn');
+const themeSwitch = document.getElementById('checkbox');
 
 function generateNumbers() {
     const numbers = [];
@@ -23,7 +24,16 @@ function displayNumbers(numbers) {
     }
 }
 
+function toggleTheme() {
+    if (themeSwitch.checked) {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+}
+
 generateBtn.addEventListener('click', generateNumbers);
+themeSwitch.addEventListener('change', toggleTheme);
 
 // Initial generation
 generateNumbers();

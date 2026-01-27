@@ -1,28 +1,54 @@
+:root {
+    --background-gradient-start: #4facfe;
+    --background-gradient-end: #00f2fe;
+    --container-bg: white;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --number-bg: #eee;
+    --button-bg: #4facfe;
+    --button-hover-bg: #00f2fe;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
 body {
     font-family: sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(to right, #4facfe, #00f2fe);
+    background: linear-gradient(to right, var(--background-gradient-start), var(--background-gradient-end));
     margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    --background-gradient-start: #232526;
+    --background-gradient-end: #414345;
+    --container-bg: #333;
+    --text-primary: #eee;
+    --text-secondary: #ccc;
+    --number-bg: #555;
+    --button-bg: #888;
+    --button-hover-bg: #aaa;
+    --shadow-color: rgba(255, 255, 255, 0.1);
 }
 
 .container {
-    background-color: white;
+    background-color: var(--container-bg);
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px var(--shadow-color);
     text-align: center;
+    transition: background-color 0.3s;
 }
 
 h1 {
-    color: #333;
+    color: var(--text-primary);
     margin-bottom: 0.5rem;
 }
 
 p {
-    color: #666;
+    color: var(--text-secondary);
     margin-bottom: 2rem;
 }
 
@@ -37,18 +63,19 @@ p {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    background-color: #eee;
+    background-color: var(--number-bg);
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
-    color: #333;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+    box-shadow: 0 2px 5px var(--shadow-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 #generate-btn {
-    background-color: #4facfe;
+    background-color: var(--button-bg);
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -59,5 +86,67 @@ p {
 }
 
 #generate-btn:hover {
-    background-color: #00f2fe;
+    background-color: var(--button-hover-bg);
+}
+
+/* Theme Switcher */
+.theme-switch-container {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
