@@ -53,7 +53,7 @@ function setStatus(statusKey) {
 
 async function fetchStatus() {
     try {
-        const response = await fetch('/status');
+        const response = await fetch('/api/status');
         const data = await response.json();
         const statusKey = Object.keys(statuses).find(key => statuses[key].title === data.status);
         if (statusKey) {
@@ -69,7 +69,7 @@ async function updateStatus(statusKey) {
     if (!status) return;
 
     try {
-        await fetch('/status', {
+        await fetch('/api/status', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
