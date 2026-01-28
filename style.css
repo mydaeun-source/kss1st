@@ -47,6 +47,7 @@ body.dark-mode {
 .bungeoppang-img {
     width: 100%;
     transform: rotate(-10deg);
+    filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
 
 /* Sign Board */
