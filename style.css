@@ -54,16 +54,40 @@ p {
 
 .numbers-container {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
+    flex-direction: column; /* Changed to column to stack sets */
+    align-items: center; /* Center items horizontally */
+    gap: 1.5rem; /* Space between lotto sets */
     margin-bottom: 2rem;
+}
+
+.lotto-set {
+    display: flex;
+    flex-wrap: wrap; /* Allow numbers to wrap within a set */
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem; /* Space between numbers */
+    padding: 1rem;
+    background-color: var(--number-bg); /* Use number-bg for set background */
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    width: 100%; /* Take full width of parent */
+    max-width: 400px; /* Optional: limit width for better aesthetics */
+    transition: background-color 0.3s;
+}
+
+.lotto-set h3 {
+    width: 100%; /* Title takes full width */
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    margin-top: 0;
 }
 
 .number {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    background-color: var(--number-bg);
+    background-color: #f0f0f0; /* Specific color for individual number */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,6 +96,10 @@ p {
     color: var(--text-primary);
     box-shadow: 0 2px 5px var(--shadow-color);
     transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode .number {
+    background-color: #666;
 }
 
 #generate-btn {
