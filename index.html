@@ -10,23 +10,33 @@
 </head>
 <body>
     <div class="container">
-        <div class="fish-container">
-            <div class="fish-body">
-                <div class="eye"></div>
-                <div class="fin top-fin"></div>
-                <div class="fin bottom-fin"></div>
-                <div class="tail"></div>
-            </div>
-            <div class="sign-board-container">
-                <div class="sign-board">
-                    <h1 id="status-title"></h1>
-                    <p id="status-message"></p>
-                </div>
+        <div class="svg-container">
+            <svg id="bungeoppang-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+                <g class="fish-group">
+                    <path class="fish-body-path" d="M 10,50 
+                                     C 10,25 40,25 55,40 
+                                     L 75,30 
+                                     C 80,25 90,30 90,40 
+                                     L 95,50 
+                                     C 95,50 90,60 90,70 
+                                     C 90,80 80,85 75,80 
+                                     L 55,70 
+                                     C 40,85 10,85 10,60 
+                                     Z"/>
+                    <circle class="fish-eye" cx="78" cy="45" r="3" />
+                    <path class="fish-fins" d="M 50,42 C 45,35 40,35 35,40 M 50,68 C 45,75 40,75 35,70 M 60,38 L 50,30 L 40,38 M 60,72 L 50,80 L 40,72"/>
+                </g>
+            </svg>
+        </div>
+        <div class="sign-board-container">
+            <div class="sign-board">
+                <h1 id="status-title"></h1>
+                <p id="status-message"></p>
             </div>
         </div>
     </div>
 
-    <button id="admin-panel-toggle-btn" class="admin-toggle-btn" style="display: none;">
+    <button id="admin-panel-toggle-btn" class="admin-toggle-btn">
         <i class="fas fa-cog"></i> 영업 상태 변경
     </button>
 

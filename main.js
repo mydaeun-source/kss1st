@@ -46,13 +46,6 @@ function setStatus(status) {
     
     container.classList.remove('open', 'soldout', 'closed');
     container.classList.add(status.className);
-
-    // Control visibility of admin toggle button
-    if (status === statuses.open) {
-        adminPanelToggleButton.style.display = 'none';
-    } else {
-        adminPanelToggleButton.style.display = 'flex'; // Use flex for icon and text
-    }
 }
 
 function showAdminModal() {
