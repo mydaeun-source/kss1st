@@ -40,12 +40,46 @@ const statuses = {
     }
 };
 
-function setStatus(status) {
+function setStatus(statusKey) {
+    const status = statuses[statusKey];
+    if (!status) return;
+
     statusTitle.textContent = status.title;
     statusMessage.textContent = status.message;
     
     container.classList.remove('open', 'soldout', 'closed');
     container.classList.add(status.className);
+}
+
+async function fetchStatus() {
+    try {
+        const response = await fetch('/status');
+        const data = await response.json();
+        const statusKey = Object.keys(statuses).find(key => statuses[key].title === data.status);
+        if (statusKey) {
+            setStatus(statusKey);
+        }
+    } catch (error) {
+        console.error('Error fetching status:', error);
+    }
+}
+
+async function updateStatus(statusKey) {
+    const status = statuses[statusKey];
+    if (!status) return;
+
+    try {
+        await fetch('/status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status: status.title }),
+        });
+        setStatus(statusKey);
+    } catch (error) {
+        console.error('Error updating status:', error);
+    }
 }
 
 function showAdminModal() {
@@ -118,19 +152,19 @@ adminModal.addEventListener('click', (e) => {
 
 openBtn.addEventListener('click', () => {
     if (isAuthenticated) {
-        setStatus(statuses.open);
+        updateStatus('open');
         hideAdminModal();
     }
 });
 soldoutBtn.addEventListener('click', () => {
     if (isAuthenticated) {
-        setStatus(statuses.soldout);
+        updateStatus('soldout');
         hideAdminModal();
     }
 });
 closedBtn.addEventListener('click', () => {
     if (isAuthenticated) {
-        setStatus(statuses.closed);
+        updateStatus('closed');
         hideAdminModal();
     }
 });
@@ -138,5 +172,6 @@ closedBtn.addEventListener('click', () => {
 checkboxModal.addEventListener('change', toggleTheme);
 
 // Initial status and theme sync
-setStatus(statuses.open); // Set initial status to 'open'
+fetchStatus(); // Fetch initial status
+setInterval(fetchStatus, 5000); // Poll for status changes every 5 seconds
 toggleTheme(); // Apply initial theme based on checkbox state
