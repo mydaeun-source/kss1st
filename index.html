@@ -3,22 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로또 번호 생성기</title>
+    <title>붕어빵 트럭</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>로또 번호 생성기</h1>
-        <p>버튼을 클릭하여 행운의 번호를 생성하세요!</p>
-        <div class="numbers-container"></div>
-        <button id="generate-btn">번호 생성</button>
+        <div class="fish-container">
+            <div class="fish-body">
+                <div class="eye"></div>
+                <div class="fin top-fin"></div>
+                <div class="fin bottom-fin"></div>
+                <div class="tail"></div>
+            </div>
+            <div class="sign-board-container">
+                <div class="sign-board">
+                    <h1 id="status-title"></h1>
+                    <p id="status-message"></p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="theme-switch-container">
-        <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-            <div class="slider round"></div>
-        </label>
+
+    <button id="admin-panel-toggle-btn" class="admin-toggle-btn" style="display: none;">
+        <i class="fas fa-cog"></i> 영업 상태 변경
+    </button>
+
+    <div id="admin-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="modal-title">사장님, 암호를 입력하세요</h2>
+            <input type="password" id="password-input" placeholder="암호 입력">
+            <div class="modal-actions">
+                <button id="password-submit">확인</button>
+                <button id="password-cancel">취소</button>
+            </div>
+
+            <div id="admin-controls" style="display: none;">
+                <h3>영업 상태 설정</h3>
+                <div class="status-buttons">
+                    <button id="open-btn">영업중</button>
+                    <button id="soldout-btn">재료소진</button>
+                    <button id="closed-btn">휴무</button>
+                </div>
+                <div class="theme-switch-container-modal">
+                    <label class="theme-switch" for="checkbox-modal">
+                        <input type="checkbox" id="checkbox-modal" />
+                        <div class="slider round"></div>
+                    </label>
+                    <span>다크 모드</span>
+                </div>
+                <button id="admin-close-btn" class="close-btn">닫기</button>
+            </div>
+        </div>
     </div>
+
     <script src="main.js"></script>
 </body>
 </html>

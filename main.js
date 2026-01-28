@@ -1,57 +1,149 @@
-const numbersContainer = document.querySelector('.numbers-container');
-const generateBtn = document.getElementById('generate-btn');
-const themeSwitch = document.getElementById('checkbox');
+const container = document.querySelector('.container');
+const statusTitle = document.getElementById('status-title');
+const statusMessage = document.getElementById('status-message');
 
-function generateOneSetOfNumbers() {
-    const numbers = [];
-    while (numbers.length < 6) {
-        const randomNumber = Math.floor(Math.random() * 45) + 1;
-        if (!numbers.includes(randomNumber)) {
-            numbers.push(randomNumber);
-        }
+const adminPanelToggleButton = document.getElementById('admin-panel-toggle-btn');
+
+// Admin Modal Elements
+const adminModal = document.getElementById('admin-modal');
+const modalContent = adminModal.querySelector('.modal-content');
+const modalTitle = document.getElementById('modal-title');
+const passwordInput = document.getElementById('password-input');
+const passwordSubmit = document.getElementById('password-submit');
+const passwordCancel = document.getElementById('password-cancel');
+const adminControls = document.getElementById('admin-controls');
+const adminCloseBtn = document.getElementById('admin-close-btn');
+
+const openBtn = document.getElementById('open-btn');
+const soldoutBtn = document.getElementById('soldout-btn');
+const closedBtn = document.getElementById('closed-btn');
+const checkboxModal = document.getElementById('checkbox-modal'); // Theme switch inside modal
+
+const CORRECT_PASSWORD = '7008';
+let isAuthenticated = false; // To track if admin is authenticated in current modal session
+
+const statuses = {
+    open: {
+        title: '영업중',
+        message: '갓 구운 붕어빵! 팥, 슈크림 있어요!',
+        className: 'open'
+    },
+    soldout: {
+        title: '재료소진',
+        message: '반죽도 없고... 팥도 없고... 사장님도 집에 갔어요.',
+        className: 'soldout'
+    },
+    closed: {
+        title: '휴무',
+        message: '사장님 마음대로 휴무! (아마도 낚시 갔을 듯)',
+        className: 'closed'
     }
-    numbers.sort((a, b) => a - b);
-    return numbers;
-}
+};
 
-function generateNumbers() {
-    const allSets = [];
-    for (let i = 0; i < 5; i++) {
-        allSets.push(generateOneSetOfNumbers());
+function setStatus(status) {
+    statusTitle.textContent = status.title;
+    statusMessage.textContent = status.message;
+    
+    container.classList.remove('open', 'soldout', 'closed');
+    container.classList.add(status.className);
+
+    // Control visibility of admin toggle button
+    if (status === statuses.open) {
+        adminPanelToggleButton.style.display = 'none';
+    } else {
+        adminPanelToggleButton.style.display = 'flex'; // Use flex for icon and text
     }
-    displayNumbers(allSets);
 }
 
-function displayNumbers(allSets) {
-    numbersContainer.innerHTML = '';
-    allSets.forEach((numbers, index) => {
-        const setContainer = document.createElement('div');
-        setContainer.classList.add('lotto-set');
-        const setTitle = document.createElement('h3');
-        setTitle.textContent = `Set ${index + 1}`;
-        setContainer.appendChild(setTitle);
+function showAdminModal() {
+    adminModal.classList.add('visible');
+    passwordInput.value = ''; // Clear password input each time
+    modalContent.classList.remove('shake');
+    
+    // Reset modal to password input view
+    passwordInput.style.display = 'block';
+    passwordSubmit.style.display = 'inline-block';
+    passwordCancel.style.display = 'inline-block';
+    adminControls.style.display = 'none';
+    modalTitle.textContent = '사장님, 암호를 입력하세요';
+    isAuthenticated = false;
+    passwordInput.focus();
 
-        numbers.forEach(number => {
-            const numberDiv = document.createElement('div');
-            numberDiv.classList.add('number');
-            numberDiv.textContent = number;
-            setContainer.appendChild(numberDiv);
-        });
-        numbersContainer.appendChild(setContainer);
-    });
+    // Sync theme switch state
+    checkboxModal.checked = document.body.classList.contains('dark-mode');
 }
 
+function hideAdminModal() {
+    adminModal.classList.remove('visible');
+    passwordInput.value = '';
+    modalContent.classList.remove('shake');
+    isAuthenticated = false; // Reset authentication on close
+}
+
+function handlePasswordSubmit() {
+    if (passwordInput.value === CORRECT_PASSWORD) {
+        isAuthenticated = true;
+        passwordInput.style.display = 'none';
+        passwordSubmit.style.display = 'none';
+        passwordCancel.style.display = 'none'; // Hide cancel button after successful login
+        adminControls.style.display = 'block';
+        modalTitle.textContent = '영업 상태 관리';
+    } else {
+        modalContent.classList.add('shake');
+        passwordInput.value = ''; // Clear input on incorrect password
+        setTimeout(() => {
+            modalContent.classList.remove('shake');
+        }, 500);
+    }
+}
 
 function toggleTheme() {
-    if (themeSwitch.checked) {
+    if (checkboxModal.checked) {
         document.body.classList.add('dark-mode');
     } else {
         document.body.classList.remove('dark-mode');
     }
 }
 
-generateBtn.addEventListener('click', generateNumbers);
-themeSwitch.addEventListener('change', toggleTheme);
+// Event Listeners
+adminPanelToggleButton.addEventListener('click', showAdminModal);
 
-// Initial generation
-generateNumbers();
+passwordSubmit.addEventListener('click', handlePasswordSubmit);
+passwordInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        handlePasswordSubmit();
+    }
+});
+passwordCancel.addEventListener('click', hideAdminModal);
+adminCloseBtn.addEventListener('click', hideAdminModal); // Close button for admin controls view
+
+adminModal.addEventListener('click', (e) => {
+    if (e.target === adminModal) {
+        hideAdminModal();
+    }
+});
+
+openBtn.addEventListener('click', () => {
+    if (isAuthenticated) {
+        setStatus(statuses.open);
+        hideAdminModal();
+    }
+});
+soldoutBtn.addEventListener('click', () => {
+    if (isAuthenticated) {
+        setStatus(statuses.soldout);
+        hideAdminModal();
+    }
+});
+closedBtn.addEventListener('click', () => {
+    if (isAuthenticated) {
+        setStatus(statuses.closed);
+        hideAdminModal();
+    }
+});
+
+checkboxModal.addEventListener('change', toggleTheme);
+
+// Initial status and theme sync
+setStatus(statuses.open); // Set initial status to 'open'
+toggleTheme(); // Apply initial theme based on checkbox state
