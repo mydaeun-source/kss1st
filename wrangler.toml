@@ -1,5 +1,0 @@
-name = "kss1st"
-compatibility_date = "2024-01-29"
-
-[functions]
-  nodejs_compat = true
