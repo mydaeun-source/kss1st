@@ -1,8 +1,0 @@
-{
-  "name": "kss1st-functions",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "itty-router": "^5.0.22"
-  }
-}

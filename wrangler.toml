@@ -1,0 +1,6 @@
+name = "kss1st"
+compatibility_date = "2024-01-29"
+compatibility_flags = ["nodejs_compat"]
+
+[pages_build_output]
+functions-root = "./functions"
