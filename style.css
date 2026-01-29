@@ -84,8 +84,8 @@ body.dark-mode {
 
 /* Admin Toggle Button */
 .admin-toggle-btn {
-    position: absolute;
-    top: 1rem;
+    position: fixed;
+    bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
     font-family: 'Jua', sans-serif;
