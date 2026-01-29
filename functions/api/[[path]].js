@@ -14,7 +14,7 @@ const router = Router();
 router.get('/api/status', async ({ env }) => {
     try {
         const status = await env.KSS1ST_STATUS.get('currentStatus');
-        return jsonResponse({ status: status || '營業中' });
+        return jsonResponse({ status: status || '재료소진' });
     } catch (error) {
         console.error('Error reading status from KV:', error);
         return jsonResponse({ error: 'Failed to read status' }, 500);
