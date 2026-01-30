@@ -14,14 +14,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # npm install 단계를 여기서 제거했습니다.
-      # 이제 빌드 과정은 Cloudflare가 wrangler.toml을 통해 직접 관리합니다.
-
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: 'kss1st'
-          directory: '.' # 디렉토리는 여전히 필요합니다.
+          directory: '.'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
