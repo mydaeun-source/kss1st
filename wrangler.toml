@@ -4,9 +4,6 @@ compatibility_flags = ["nodejs_compat"]
 
 pages_build_output_dir = "public"
 
-[build]
-command = "npm install"
-
 [[kv_namespaces]]
 binding = "KSS1ST_STATUS"
 id = "36130b05b81347a49c66133880479b16"
