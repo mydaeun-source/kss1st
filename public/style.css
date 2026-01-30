@@ -233,39 +233,65 @@ body.dark-mode #password-input {
     margin-bottom: 2rem; /* Increased margin */
 }
 
-#admin-controls .status-buttons {
+#admin-controls .status-radio-group {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.2rem; /* Increased gap */
-    margin-bottom: 2.5rem; /* Increased margin */
+    gap: 1rem;
+    margin-bottom: 2.5rem;
 }
 
-#admin-controls button {
-    font-family: 'Jua', sans-serif;
-    border: none;
-    padding: 1.2rem; /* Increased padding */
-    font-size: 1.2rem; /* Increased font size */
-    border-radius: 0.75rem; /* Smoother radius */
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    display: flex; /* For icon alignment */
+#admin-controls .status-radio-group input[type="radio"] {
+    display: none; /* Hide the actual radio button */
+}
+
+#admin-controls .status-radio-btn {
+    display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.8rem; /* Space between icon and text */
+    gap: 0.8rem;
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    color: #555;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
 }
-#admin-controls button:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+body.dark-mode #admin-controls .status-radio-btn {
+    background-color: #555;
+    color: #ddd;
 }
 
-#admin-controls button i {
-    font-size: 1.1rem; /* Icon size */
+
+#admin-controls .status-radio-group input[type="radio"]:checked + .status-radio-btn {
+    border-color: var(--open-color);
+    background-color: #e8f5e9; /* Light green for open */
+    color: var(--open-color);
+    font-weight: bold;
 }
 
-#open-btn { background-color: var(--open-color); color: white; }
-#soldout-btn { background-color: var(--soldout-color); color: white; }
-#closed-btn { background-color: var(--closed-color); color: white; }
+#admin-controls .status-radio-group input[value="soldout"]:checked + .status-radio-btn {
+    border-color: var(--soldout-color);
+    background-color: #ffebee; /* Light red for soldout */
+    color: var(--soldout-color);
+}
+
+#admin-controls .status-radio-group input[value="closed"]:checked + .status-radio-btn {
+    border-color: var(--closed-color);
+    background-color: #f5f5f5; /* Light grey for closed */
+    color: var(--closed-color);
+}
+
+
+#admin-controls .status-radio-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#admin-controls .status-radio-btn i {
+    font-size: 1.1rem;
+}
 
 .theme-switch-wrapper {
     display: flex;

@@ -63,24 +63,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function fetchStatus() {
-        try {
-            const response = await fetch('/api/status');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+async function fetchStatus() {
+    try {
+        const response = await fetch('/api/status');
+        const data = await response.json();
+        const statusKey = Object.keys(statuses).find(key => statuses[key].title === data.status);
+        if (statusKey) {
+            setStatus(statusKey);
+            // Update radio buttons to reflect the current status
+            const radioToCheck = document.querySelector(`input[name="status"][value="${statusKey}"]`);
+            if (radioToCheck) {
+                radioToCheck.checked = true;
             }
-            const data = await response.json();
-            const statusKey = data.status;
-            if (statusKey && statuses[statusKey]) {
-                setStatus(statusKey);
-            } else {
-                setStatus('휴무'); // Default to closed if status is unknown
-            }
-        } catch (error) {
-            console.error('Error fetching status:', error);
-            setStatus('휴무'); // In case of error, show closed status
         }
+    } catch (error) {
+        console.error('Error fetching status:', error);
     }
+}
 
     async function updateStatus(statusKey) {
         if (!statuses[statusKey]) return;
@@ -148,24 +147,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (adminModal) adminModal.addEventListener('click', (e) => {
             if (e.target === adminModal) hideAdminModal();
         });
-        if (openBtn) openBtn.addEventListener('click', () => {
-            if (isAuthenticated) {
-                updateStatus('영업중');
-                hideAdminModal();
-            }
-        });
-        if (soldoutBtn) soldoutBtn.addEventListener('click', () => {
-            if (isAuthenticated) {
-                updateStatus('재료소진');
-                hideAdminModal();
-            }
-        });
-        if (closedBtn) closedBtn.addEventListener('click', () => {
-            if (isAuthenticated) {
-                updateStatus('휴무');
-                hideAdminModal();
-            }
-        });
+// New event listener for radio buttons
+document.querySelectorAll('input[name="status"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+        if (isAuthenticated) {
+            updateStatus(e.target.value);
+            // Optional: hide modal immediately after selection
+            // hideAdminModal();
+        }
+    });
+});
+
 
         // Theme switcher logic
         const checkbox = document.getElementById('checkbox');
