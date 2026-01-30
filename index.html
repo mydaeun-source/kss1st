@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>붕어빵 트럭</title>
+    <title>프레빈 만드는 붕어빵</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -22,35 +22,27 @@
     <div id="admin-modal" class="modal-overlay">
         <div class="modal-content">
             <h2 id="modal-title">사장님, 암호를 입력하세요</h2>
-            <input type="password" id="password-input" placeholder="암호 입력">
-            <div class="modal-actions">
+            <input type="password" id="password-input" placeholder="비밀번호">
+            <div class="modal-buttons">
                 <button id="password-submit">확인</button>
                 <button id="password-cancel">취소</button>
             </div>
-
             <div id="admin-controls" style="display: none;">
-                <h3>영업 상태 설정</h3>
-                <div class="status-buttons">
-                    <button id="open-btn">영업중</button>
-                    <button id="soldout-btn">재료소진</button>
-                    <button id="closed-btn">휴무</button>
-                </div>
-                <div class="theme-switch-container-modal">
+                <button id="open-btn">영업중</button>
+                <button id="soldout-btn">재료소진</button>
+                <button id="closed-btn">휴무</button>
+                <div class="theme-switch-wrapper">
                     <label class="theme-switch" for="checkbox-modal">
                         <input type="checkbox" id="checkbox-modal" />
                         <div class="slider round"></div>
                     </label>
                     <span>다크 모드</span>
                 </div>
-                <button id="admin-close-btn" class="close-btn">닫기</button>
+                <button id="admin-close-btn" class="close-btn">&times;</button>
             </div>
         </div>
     </div>
-
-    <button id="admin-panel-toggle-btn" class="admin-toggle-btn">
-        <i class="fas fa-cog"></i> 영업 상태 변경
-    </button>
-
+    <button id="admin-panel-toggle-btn"><i class="fas fa-cog"></i> 영업 상태 변경</button>
     <script src="main.js"></script>
 </body>
 </html>
