@@ -26,22 +26,22 @@ document.addEventListener('DOMContentLoaded', () => {
     let isAuthenticated = false;
 
     const statuses = {
-        '영업중': {
+        'open': {
             icon: '<i class="fas fa-door-open"></i>',
             title: '영업중',
-            message: '갓 구운 붕어빵! 팥, 슈크림 있어요!',
+            message: 'KSS1ST를 이용할 수 있습니다.',
             className: 'open'
         },
-        '재료소진': {
+        'soldout': {
             icon: '<i class="fas fa-exclamation-circle"></i>',
             title: '재료소진',
-            message: '반죽도 없고... 팥도 없고... 사장님도 집에 갔어요.',
+            message: '현재 이용자가 많아 잠시 대기해주세요.',
             className: 'soldout'
         },
-        '휴무': {
+        'closed': {
             icon: '<i class="fas fa-door-closed"></i>',
             title: '휴무',
-            message: '사장님 마음대로 휴무! (아마도 낚시 갔을 듯)',
+            message: '시스템 점검 중입니다.',
             className: 'closed'
         }
     };
@@ -57,9 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (statusTitle) statusTitle.textContent = status.title;
         if (statusMessage) statusMessage.textContent = status.message;
         
-        if(container) {
-            container.classList.remove('open', 'soldout', 'closed');
-            container.classList.add(status.className);
+        const statusCard = document.getElementById('status-card');
+        if(statusCard) {
+            statusCard.className = 'card ' + status.className;
         }
     }
 
@@ -82,7 +82,8 @@ async function fetchStatus() {
 }
 
     async function updateStatus(statusKey) {
-        if (!statuses[statusKey]) return;
+        const statusInfo = statuses[statusKey];
+        if (!statusInfo) return;
 
         try {
             const response = await fetch('/api/status', {
@@ -90,7 +91,7 @@ async function fetchStatus() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ status: statusKey }),
+                body: JSON.stringify({ status: statusInfo.title }),
             });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
