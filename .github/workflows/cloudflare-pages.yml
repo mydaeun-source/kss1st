@@ -1,11 +1,8 @@
-
 name: Deploy to Cloudflare Pages
-
 on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,11 +11,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      # Cloudflare로 보내기 전에 여기서 직접 부품을 설치합니다.
+      - name: Install Dependencies
+        run: npm install
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: 'kss1st'
-          directory: '.'
+          directory: '.' # 완성된 파일들이 담긴 현재 폴더를 그대로 전달합니다.
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}

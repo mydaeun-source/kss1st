@@ -1,8 +1,10 @@
+# wrangler.toml - 빌드 설정 완전 제거
 name = "kss1st"
 compatibility_date = "2024-01-29"
 compatibility_flags = ["nodejs_compat"]
 
-pages_build_output_dir = "."
+# pages_build_output_dir 과 [build] 섹션을 모두 제거하여
+# Cloudflare의 자동 빌드 기능을 완전히 비활성화합니다.
 
 [[kv_namespaces]]
 binding = "KSS1ST_STATUS"
