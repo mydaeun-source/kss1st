@@ -28,17 +28,20 @@
                 <button id="password-cancel">취소</button>
             </div>
             <div id="admin-controls" style="display: none;">
-                <button id="open-btn">영업중</button>
-                <button id="soldout-btn">재료소진</button>
-                <button id="closed-btn">휴무</button>
+                <button id="admin-close-btn">&times;</button>
+                <h2>영업 상태 관리</h2>
+                <div class="status-buttons">
+                    <button id="open-btn">영업중</button>
+                    <button id="soldout-btn">재료소진</button>
+                    <button id="closed-btn">휴무</button>
+                </div>
                 <div class="theme-switch-wrapper">
+                    <span>다크 모드</span>
                     <label class="theme-switch" for="checkbox-modal">
                         <input type="checkbox" id="checkbox-modal" />
                         <div class="slider round"></div>
                     </label>
-                    <span>다크 모드</span>
                 </div>
-                <button id="admin-close-btn" class="close-btn">&times;</button>
             </div>
         </div>
     </div>

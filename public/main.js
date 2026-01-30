@@ -93,6 +93,7 @@ function showAdminModal() {
     passwordCancel.style.display = 'inline-block';
     adminControls.style.display = 'none';
     modalTitle.textContent = '사장님, 암호를 입력하세요';
+    modalTitle.style.display = 'block';
     isAuthenticated = false;
     passwordInput.focus();
 
@@ -114,7 +115,7 @@ function handlePasswordSubmit() {
         passwordSubmit.style.display = 'none';
         passwordCancel.style.display = 'none'; // Hide cancel button after successful login
         adminControls.style.display = 'block';
-        modalTitle.textContent = '영업 상태 관리';
+        modalTitle.style.display = 'none';
     } else {
         modalContent.classList.add('shake');
         passwordInput.value = ''; // Clear input on incorrect password

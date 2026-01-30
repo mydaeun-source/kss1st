@@ -133,14 +133,14 @@ body.dark-mode {
 
 .modal-content {
     background-color: var(--bg-color);
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 1rem;
-    box-shadow: 0 10px 25px var(--shadow-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
     color: var(--text-color);
-    transform: scale(0.9);
-    transition: transform 0.3s;
-    max-width: 400px;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-out;
+    max-width: 380px;
     width: 90%;
 }
 
@@ -148,58 +148,70 @@ body.dark-mode {
     transform: scale(1);
 }
 
-.modal-content h2, .modal-content h3 {
-    margin: 0 0 1.5rem;
-    color: var(--text-color);
+.modal-content h2 {
+    margin: 0 0 2rem;
+    font-size: 1.5rem;
 }
 
 #password-input {
     font-family: 'Jua', sans-serif;
-    width: calc(100% - 20px);
-    padding: 0.75rem 10px;
-    border: 2px solid var(--sign-bg);
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
     border-radius: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-align: center;
     margin-bottom: 1.5rem;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: #fff;
+    color: #333;
     box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+body.dark-mode #password-input {
+    background-color: #555;
+    color: var(--text-color);
+    border-color: #777;
+}
+#password-input:focus {
+    outline: none;
+    border-color: var(--open-color);
 }
 
-.modal-actions {
+.modal-buttons {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 1.5rem;
 }
 
-.modal-actions button {
+.modal-buttons button {
     font-family: 'Jua', sans-serif;
-    background-color: var(--sign-bg);
-    color: var(--sign-text);
-    border: 2px solid #8b5a2b;
-    padding: 0.5rem 1rem;
+    border: none;
+    padding: 0.7rem 1.5rem;
     font-size: 1rem;
     border-radius: 0.5rem;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-}
-
-.modal-actions button:hover {
-    background-color: #cdaa7d;
-    transform: translateY(-2px);
+    flex-grow: 1;
 }
 
 #password-submit {
     background-color: var(--open-color);
     color: white;
-    border-color: #388e3c;
 }
-
 #password-submit:hover {
     background-color: #5cb85c;
+    transform: translateY(-2px);
 }
+
+#password-cancel {
+    background-color: #ccc;
+    color: #333;
+}
+#password-cancel:hover {
+    background-color: #bbb;
+    transform: translateY(-2px);
+}
+
 
 .modal-content.shake {
     animation: shake 0.5s;
@@ -212,75 +224,82 @@ body.dark-mode {
 }
 
 #admin-controls {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding-top: 1rem;
 }
 
-body.dark-mode #admin-controls {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.status-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+#admin-controls h2 {
+    font-size: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
-.status-buttons button {
+#admin-controls .status-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+#admin-controls button {
     font-family: 'Jua', sans-serif;
-    background-color: var(--sign-bg);
-    color: var(--sign-text);
-    border: 2px solid #8b5a2b;
-    padding: 0.75rem 1.25rem;
+    border: none;
+    padding: 1rem;
     font-size: 1.1rem;
     border-radius: 0.5rem;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    flex: 1;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+#admin-controls button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-.status-buttons button:hover {
-    background-color: #cdaa7d;
-    transform: translateY(-2px);
-}
+#open-btn { background-color: var(--open-color); color: white; }
+#soldout-btn { background-color: var(--soldout-color); color: white; }
+#closed-btn { background-color: var(--closed-color); color: white; }
 
-.theme-switch-container-modal {
+.theme-switch-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 0.5rem;
+    background-color: rgba(0,0,0,0.05);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
     margin-bottom: 1.5rem;
 }
-
-.theme-switch-container-modal span {
-    color: var(--text-color);
+body.dark-mode .theme-switch-wrapper {
+    background-color: rgba(255,255,255,0.1);
 }
 
-.close-btn {
-    font-family: 'Jua', sans-serif;
-    background-color: #f44336;
-    color: white;
-    border: 2px solid #d32f2f;
-    padding: 0.5rem 1rem;
+.theme-switch-wrapper span {
     font-size: 1rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    margin-top: 1rem;
 }
 
-.close-btn:hover {
-    background-color: #d32f2f;
-    transform: translateY(-2px);
+#admin-close-btn {
+    position: absolute;
+    top: -1.5rem;
+    right: -1.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    box-shadow: none;
+}
+#admin-close-btn:hover {
+    color: #777;
+    transform: none;
+    box-shadow: none;
 }
 
 .theme-switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 50px;
+    height: 28px;
 }
 
 .theme-switch input {
@@ -303,8 +322,8 @@ body.dark-mode #admin-controls {
 .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 20px;
+    width: 20px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -312,19 +331,15 @@ body.dark-mode #admin-controls {
 }
 
 #checkbox-modal:checked + .slider {
-    background-color: #2196F3;
-}
-
-#checkbox-modal:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    background-color: var(--open-color);
 }
 
 #checkbox-modal:checked + .slider:before {
-    transform: translateX(26px);
+    transform: translateX(22px);
 }
 
 .slider.round {
-    border-radius: 34px;
+    border-radius: 28px;
 }
 
 .slider.round:before {

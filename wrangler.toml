@@ -6,11 +6,7 @@ compatibility_flags = ["nodejs_compat"]
 # 완성품은 반드시 'public' 폴더에 두겠다고 명시합니다.
 pages_build_output_dir = "public"
 
-# [build] 섹션을 사용하여 부품 조립 명령을 전달합니다.
-[build]
-command = "npm install"
-
 [[kv_namespaces]]
 binding = "KSS1ST_STATUS"
-id = "36130b05b81347a49c66133880479b16"
-preview_id = "36130b05b81347a49c66133880479b16"
+id = "4c0f15cec2c641fdbbe68f04ab45446f"
+preview_id = "4c0f15cec2c641fdbbe68f04ab45446f"
