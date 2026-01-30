@@ -1,19 +1,9 @@
 name = "kss1st"
-pages_build_output_dir = "."
 compatibility_date = "2024-01-29"
 compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "."
 
-[pages_build_output]
-functions-root = "./functions"
-
-# This section connects your code to the Cloudflare KV database.
 [[kv_namespaces]]
 binding = "KSS1ST_STATUS"
-# IMPORTANT: You need to replace the id and preview_id values below.
-# 1. Go to your Cloudflare Dashboard.
-# 2. Go to "Workers & Pages" -> "KV".
-# 3. Create a new namespace (e.g., "kss1st-status") or use the existing one.
-# 4. Copy the "ID" of the namespace and paste it below.
-# 5. Do the same for a preview namespace if you have one, otherwise you can use the same ID.
-id = "4c0f15cec2c641fdbbe68f04ab45446f"
-preview_id = "4c0f15cec2c641fdbbe68f04ab45446f"
+id = "36130b05b81347a49c66133880479b16"
+preview_id = "36130b05b81347a49c66133880479b16"
