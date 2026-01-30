@@ -152,8 +152,8 @@ document.querySelectorAll('input[name="status"]').forEach(radio => {
     radio.addEventListener('change', (e) => {
         if (isAuthenticated) {
             updateStatus(e.target.value);
-            // Optional: hide modal immediately after selection
-            // hideAdminModal();
+            // Hide modal immediately after selection
+            hideAdminModal();
         }
     });
 });
