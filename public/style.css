@@ -229,30 +229,38 @@ body.dark-mode #password-input {
 }
 
 #admin-controls h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.7rem; /* Increased font size */
+    margin-bottom: 2rem; /* Increased margin */
 }
 
 #admin-controls .status-buttons {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    gap: 1.2rem; /* Increased gap */
+    margin-bottom: 2.5rem; /* Increased margin */
 }
 
 #admin-controls button {
     font-family: 'Jua', sans-serif;
     border: none;
-    padding: 1rem;
-    font-size: 1.1rem;
-    border-radius: 0.5rem;
+    padding: 1.2rem; /* Increased padding */
+    font-size: 1.2rem; /* Increased font size */
+    border-radius: 0.75rem; /* Smoother radius */
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex; /* For icon alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem; /* Space between icon and text */
 }
 #admin-controls button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+#admin-controls button i {
+    font-size: 1.1rem; /* Icon size */
 }
 
 #open-btn { background-color: var(--open-color); color: white; }
@@ -264,8 +272,8 @@ body.dark-mode #password-input {
     justify-content: space-between;
     align-items: center;
     background-color: rgba(0,0,0,0.05);
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
+    padding: 1rem 1.25rem; /* Increased padding */
+    border-radius: 0.75rem;
     margin-bottom: 1.5rem;
 }
 body.dark-mode .theme-switch-wrapper {
@@ -273,7 +281,7 @@ body.dark-mode .theme-switch-wrapper {
 }
 
 .theme-switch-wrapper span {
-    font-size: 1rem;
+    font-size: 1.1rem; /* Increased font size */
 }
 
 #admin-close-btn {
@@ -282,7 +290,7 @@ body.dark-mode .theme-switch-wrapper {
     right: -1.5rem;
     background: none;
     border: none;
-    font-size: 2rem;
+    font-size: 2.2rem; /* Larger close icon */
     color: #aaa;
     cursor: pointer;
     line-height: 1;
