@@ -1,133 +1,110 @@
-/* General Styles */
 :root {
-    --bg-color: #f4f7f6;
-    --text-color: #333;
-    --primary-color: #007bff;
-    --card-bg: #ffffff;
-    --card-shadow: rgba(0, 0, 0, 0.05);
-    --footer-text: #6c757d;
-
-    --open-color: #28a745;
-    --soldout-color: #dc3545;
-    --closed-color: #6c757d;
+    --bg-color: #fdf7e4;
+    --text-color: #5d4037;
+    --sign-bg: #deb887;
+    --sign-text: #5d4037;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --open-color: #4caf50;
+    --soldout-color: #f44336;
+    --closed-color: #757575;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Jua', sans-serif;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     min-height: 100vh;
     background-color: var(--bg-color);
     color: var(--text-color);
     margin: 0;
-    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
 }
 
 body.dark-mode {
-    --bg-color: #1a1a1a;
+    --bg-color: #3a3a3a;
     --text-color: #e0e0e0;
-    --card-bg: #2a2a2a;
-    --card-shadow: rgba(255, 255, 255, 0.05);
-    --footer-text: #aaa;
+    --sign-bg: #8b6c4b;
+    --sign-text: #e0e0e0;
+    --shadow-color: rgba(255, 255, 255, 0.1);
 }
 
 .container {
-    width: 90%;
-    max-width: 800px;
-    margin: auto;
+    background-color: transparent;
+    padding: 2rem;
+    border-radius: 1rem;
     text-align: center;
+    position: relative;
 }
 
-/* Header, Main, Footer */
-header {
-    padding: 2rem 0;
-    border-bottom: 1px solid #eee;
+.bungeoppang-container {
+    width: 300px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.bungeoppang-img {
     width: 100%;
+    transform: rotate(-10deg);
+    filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.1));
 }
-body.dark-mode header {
-    border-bottom-color: #333;
+
+/* Sign Board */
+.sign-board-container {
+    position: relative;
+    margin-top: -30px;
+    z-index: 10;
 }
-header h1 {
-    margin: 0;
+
+.sign-board {
+    background-color: var(--sign-bg);
+    color: var(--sign-text);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    border: 5px solid #8b5a2b;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    min-width: 250px;
+    display: inline-block;
+}
+
+.sign-board h1 {
     font-size: 2rem;
-    color: var(--primary-color);
-}
-
-main {
-    padding: 2rem 0;
-}
-
-footer {
-    padding: 1.5rem 0;
-    margin-top: auto;
-    font-size: 0.9rem;
-    color: var(--footer-text);
-}
-
-/* Status Card */
-#status-card {
-    background-color: var(--card-bg);
-    border-radius: 12px;
-    padding: 2.5rem;
-    box-shadow: 0 8px 25px var(--card-shadow);
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    text-align: left;
-    border-left: 8px solid var(--closed-color);
-    transition: all 0.3s ease;
-}
-
-#status-card.open { border-color: var(--open-color); }
-#status-card.soldout { border-color: var(--soldout-color); }
-#status-card.closed { border-color: var(--closed-color); }
-
-#status-icon {
-    font-size: 3.5rem;
-    color: var(--closed-color);
-}
-#status-card.open #status-icon { color: var(--open-color); }
-#status-card.soldout #status-icon { color: var(--soldout-color); }
-
-.status-content h2 {
     margin: 0 0 0.5rem;
-    font-size: 1.8rem;
-}
-.status-content p {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #555;
-}
-body.dark-mode .status-content p {
-    color: #bbb;
 }
 
+.sign-board p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.container.open .sign-board h1 { color: var(--open-color); }
+.container.soldout .sign-board h1 { color: var(--soldout-color); }
+.container.closed .sign-board h1 { color: var(--closed-color); }
 
 /* Admin Toggle Button */
 #admin-panel-toggle-btn {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    font-family: inherit;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 1rem 1.5rem;
+    top: 1rem;
+    left: 1rem;
+    font-family: 'Jua', sans-serif;
+    background-color: var(--sign-bg);
+    color: var(--sign-text);
+    border: 2px solid #8b5a2b;
+    padding: 0.5rem 1rem;
     font-size: 1rem;
-    border-radius: 50px;
+    border-radius: 0.5rem;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     z-index: 20;
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
 
 #admin-panel-toggle-btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-3px);
+    background-color: #cdaa7d;
+    transform: translateY(-2px);
 }
 
 /* Modal Styles (Admin Modal) */

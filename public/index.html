@@ -3,33 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSS1ST 이용 현황</title>
+    <title>프레빈 만드는 붕어빵</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>KSS1ST 이용 현황</h1>
-        </header>
-        <main>
-            <div id="status-card" class="card">
-                <div id="status-icon"><i class="fas fa-question-circle"></i></div>
-                <div class="status-content">
-                    <h2 id="status-title">확인중...</h2>
-                    <p id="status-message">서버에서 상태를 가져오고 있습니다.</p>
-                </div>
+        <div class="bungeoppang-container">
+            <img src="images/bbang.png" alt="붕어빵" class="bungeoppang-img">
+        </div>
+        <div class="sign-board-container">
+            <div class="sign-board">
+                <h1 id="status-title"></h1>
+                <p id="status-message"></p>
             </div>
-            <div id="status-history" style="display: none;">
-                <h2>최근 상태 변경 기록</h2>
-                <ul id="history-list">
-                    <!-- 변경 기록이 여기에 표시됩니다 -->
-                </ul>
-            </div>
-        </main>
-        <footer>
-            <p>&copy; 2024 KSS1ST. All rights reserved.</p>
-        </footer>
+        </div>
+
         <div id="admin-modal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
