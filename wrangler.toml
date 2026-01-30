@@ -3,6 +3,9 @@ compatibility_date = "2024-01-29"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "."
 
+[pages_build]
+command = "npm install"
+
 [[kv_namespaces]]
 binding = "KSS1ST_STATUS"
 id = "36130b05b81347a49c66133880479b16"
