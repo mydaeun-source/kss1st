@@ -6,5 +6,5 @@ pages_build_output_dir = "public"
 
 [[kv_namespaces]]
 binding = "KSS1ST_STATUS"
-id = "36130b05b81347a49c66133880479b16"
-preview_id = "36130b05b81347a49c66133880479b16"
+id = "4c0f15cec2c641fdbbe68f04ab45446f"
+preview_id = "4c0f15cec2c641fdbbe68f04ab45446f"
