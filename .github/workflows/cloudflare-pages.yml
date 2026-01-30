@@ -11,15 +11,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Cloudflare로 보내기 전에 여기서 직접 부품을 설치합니다.
-      - name: Install Dependencies
-        run: npm install
-
+      # Cloudflare가 이제 wrangler.toml을 정상적으로 인식하므로
+      # GitHub Actions에서 수동으로 빌드할 필요가 없습니다.
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: 'kss1st'
-          directory: '.' # 완성된 파일들이 담긴 현재 폴더를 그대로 전달합니다.
+          directory: '.'
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
