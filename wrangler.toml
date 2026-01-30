@@ -1,12 +1,12 @@
+# wrangler.toml 최종 수정안
 name = "kss1st"
 compatibility_date = "2024-01-29"
 compatibility_flags = ["nodejs_compat"]
 
-# Cloudflare Pages가 요구하는 필수 최상위 속성
 pages_build_output_dir = "."
 
-# 빌드(조립) 방법을 지시하는 섹션
-[pages_build]
+# [pages_build] 대신 [build] 섹션을 사용합니다.
+[build]
 command = "npm install"
 
 [[kv_namespaces]]
