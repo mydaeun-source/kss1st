@@ -14,10 +14,13 @@
         </header>
         <main>
             <div id="status-card" class="card">
-                <div id="status-icon"></div>
-                <div id="status-text"></div>
+                <div id="status-icon"><i class="fas fa-question-circle"></i></div>
+                <div class="status-content">
+                    <h2 id="status-title">확인중...</h2>
+                    <p id="status-message">서버에서 상태를 가져오고 있습니다.</p>
+                </div>
             </div>
-            <div id="status-history">
+            <div id="status-history" style="display: none;">
                 <h2>최근 상태 변경 기록</h2>
                 <ul id="history-list">
                     <!-- 변경 기록이 여기에 표시됩니다 -->
@@ -29,13 +32,18 @@
         </footer>
         <div id="admin-modal" class="modal">
             <div class="modal-content">
-                <input type="password" id="password-input" placeholder="비밀번호">
-                <div class="modal-buttons">
-                    <button id="password-submit">확인</button>
-                    <button id="password-cancel">취소</button>
+                <div class="modal-header">
+                    <h2 id="modal-title">사장님, 암호를 입력하세요</h2>
+                    <button id="admin-close-btn">&times;</button>
+                </div>
+                <div id="password-section">
+                    <input type="password" id="password-input" placeholder="비밀번호">
+                    <div class="modal-buttons">
+                        <button id="password-submit">확인</button>
+                        <button id="password-cancel">취소</button>
+                    </div>
                 </div>
                 <div id="admin-controls" style="display: none;">
-                    <button id="admin-close-btn">&times;</button>
                     <h2>영업 상태 관리</h2>
                     <div class="status-buttons">
                         <button id="open-btn"><i class="fas fa-door-open"></i> 영업중</button>
@@ -54,7 +62,6 @@
         </div>
         <button id="admin-panel-toggle-btn"><i class="fas fa-cog"></i> 영업 상태 변경</button>
         <script src="main.js"></script>
-        <!-- Re-deploy to apply new API token -->
     </div>
 </body>
 </html>
