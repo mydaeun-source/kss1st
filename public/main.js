@@ -66,22 +66,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function updateStatus(statusKey) {
+        console.log(`[1] updateStatus called with key: ${statusKey}`);
         const statusInfo = statuses[statusKey];
-        if (!statusInfo) return;
+        if (!statusInfo) {
+            console.error('[Error] Invalid status key provided.');
+            return;
+        }
+        console.log(`[2] Status info found:`, statusInfo);
 
         try {
+            console.log(`[3] Sending POST request to /api/status with body:`, { status: statusInfo.title });
             const response = await fetch('/api/status', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: statusInfo.title }),
             });
+            
+            console.log(`[4] Received response from server:`, response);
             if (!response.ok) {
+                console.error(`[Error] Server responded with status: ${response.status}`);
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            await response.json();
+            
+            const responseData = await response.json();
+            console.log(`[5] Parsed response JSON:`, responseData);
+
             setStatus(statusKey);
+            console.log(`[6] Success! UI updated with setStatus.`);
+
         } catch (error) {
-            console.error('Error updating status:', error);
+            console.error('[FATAL] Error in updateStatus function:', error);
         }
     }
     
