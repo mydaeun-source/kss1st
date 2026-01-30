@@ -1,10 +1,11 @@
 name = "kss1st"
 compatibility_date = "2024-01-29"
 compatibility_flags = ["nodejs_compat"]
-pages_build_output_dir = "."
 
+# 빌드 관련 모든 설정을 이 섹션으로 그룹화합니다.
 [pages_build]
 command = "npm install"
+build_output_dir = "." # 빌드 결과물 디렉토리도 여기서 지정합니다.
 
 [[kv_namespaces]]
 binding = "KSS1ST_STATUS"

@@ -4,7 +4,7 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches:
-      - main  # 또는 주 브랜치 이름
+      - main
 
 jobs:
   deploy:
@@ -14,8 +14,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install
+      # npm install 단계를 여기서 제거했습니다.
+      # 이제 빌드 과정은 Cloudflare가 wrangler.toml을 통해 직접 관리합니다.
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
@@ -23,5 +23,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: 'kss1st'
-          directory: '.' # 배포할 디렉토리
+          directory: '.' # 디렉토리는 여전히 필요합니다.
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
